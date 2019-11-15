@@ -21,6 +21,8 @@ export default {
 <style scoped>
 #sub_text{
     text-align: left;
+    cursor: default;
+    user-select: none;
 }
 
 #sub_text span{

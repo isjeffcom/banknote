@@ -6,11 +6,13 @@
                     <img :src="item.icon" :alt="item.des">
                 </div>
 
-                <div class="n_num">
-                    <span>{{item.num}}</span>
+                <div class="n_num" v-if="viewable">
+                    <span>
+                        <ICountUp :delay="CU_delay" :endVal="item.num" :options="CU_options"/>
+                    </span>
                 </div>
 
-                <div class="n_des">
+                <div class="n_des" v-if="viewable">
                     <span>{{item.des}}</span>
                 </div>
             </div>
@@ -20,11 +22,38 @@
 </template>
 
 <script>
+import ICountUp from 'vue-countup-v2'
+
 export default {
     name: "numdata",
+    components:{
+        ICountUp
+    },
     props:{
         numd: Array
+    },
+    data(){
+        return{
+            CU_delay: 1200,
+            CU_options:{
+                duration: 3,
+                useEasing: true,
+                useGrouping: true,
+                separator:""
+            },
+            viewable: false
+        }
+    },
+    mounted(){
+        var that = this
+        addEventListener("scroll", (e)=>{
+            if(window.scrollY > 30){
+                that.viewable = true
+            }
+        })
+        
     }
+    
 }
 </script>
 
@@ -33,6 +62,7 @@ export default {
     width: 100%;
     margin-top: 100px;
     margin-bottom: 100px;
+    user-select: none;
 }
 
 #numdata_cont{

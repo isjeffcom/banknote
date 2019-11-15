@@ -39,13 +39,13 @@ export default {
 }
 
 #t_intro_cont{
-    width: 65%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
 
 #t_intro span{
-    font-size: 36px;
+    font-size: 32px;
     font-weight: lighter;
 }
 </style>
