@@ -23,11 +23,11 @@ export default {
 
 #app {
   background: #ffffff;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #262626;
   margin-top: 60px;
 }
 </style>

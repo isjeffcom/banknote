@@ -37,22 +37,33 @@ export default {
 
 #numdata_cont{
     display: flex;
-    width: 80%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.numdata_single{
+    width: 400px;
 }
 
 .n_icon img{
     width: 60px;
 }
 
+.n_num{
+    margin-top: 16px;
+}
+
 .n_num span{
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
 }
 
 .n_des{
-    width: 50%;
+    width: 85%;
+    font-style: italic;
+    opacity: .6;
+    margin-top: 2px;
     margin-left: auto;
     margin-right: auto;
 }

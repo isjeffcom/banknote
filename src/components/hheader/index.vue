@@ -58,6 +58,7 @@ export default {
 
 .h_nav_single span{
     color: #ffffff;
+    font-weight: lighter;
 }
 
 
