@@ -4,8 +4,26 @@
             <div id="block-left">
                 <div class="block-left-cont"  v-if="mode =='left'">
                     <div class="block-img">
-                        <img :src="bdata.img" :alt="bdata.title">
+                        <div class="block-img-inner" :ref="'filp'+bdata.id">
+                            <div class="block-img-front">
+                                <img :src="bdata.img" :alt="bdata.title">
+                            </div>
+
+                            <div class="block-img-back">
+                                <img :src="bdata.backImg" :alt="bdata.title">
+                            </div>
+                        </div>
+
+                        <div class="block-img-flip" v-on:click="flip(bdata.id)">
+                            <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M26.5 17.3705C33.2467 16.1024 38 13.0562 38 9.5C38 4.80558 29.7173 1 19.5 1C9.28273 1 1 4.80558 1 9.5C1 12.8361 5.18301 15.7233 11.2707 17.1148" :stroke="bdata.color" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="10.0963" y1="14.7228" x2="11.817" y2="17.1802" :stroke="bdata.color" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="9.7002" y1="19.2929" x2="11.8215" y2="17.1716" :stroke="bdata.color" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
+
+                    
                 </div>
 
                 <div class="block-left-cont block-text"  v-if="mode == 'right'">
@@ -37,7 +55,25 @@
 
                 <div class="block-right-cont" v-if="mode == 'right'">
                     <div class="block-img">
-                        <img :src="bdata.img" :alt="bdata.title">
+                        <div class="block-img-inner" :ref="'filp'+bdata.id">
+                            <div class="block-img-front">
+                                <img :src="bdata.img" :alt="bdata.title">
+                            </div>
+
+                            <div class="block-img-back">
+                                <img :src="bdata.backImg" :alt="bdata.title">
+                            </div>
+                        </div>
+
+                        <div class="block-img-flip" v-on:click="flip(bdata.id)">
+                            <svg width="39" height="20" viewBox="0 0 39 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M26.5 17.3705C33.2467 16.1024 38 13.0562 38 9.5C38 4.80558 29.7173 1 19.5 1C9.28273 1 1 4.80558 1 9.5C1 12.8361 5.18301 15.7233 11.2707 17.1148" :stroke="bdata.color" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="10.0963" y1="14.7228" x2="11.817" y2="17.1802" :stroke="bdata.color" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="9.7002" y1="19.2929" x2="11.8215" y2="17.1716" :stroke="bdata.color" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        
                     </div>
                 </div>
                 
@@ -58,12 +94,31 @@ export default {
     props:{
         mode: String,
         bdata: {
+            id: Number,
             background: String,
             color: String,
             subtitle: String,
             title: String,
             img: String,
             des: String
+        }
+    },
+    methods:{
+        flip(id){
+            var target = this.$refs['filp'+id]
+                      
+            if(this.$refs['filp'+id].getAttribute("data-flip") == '1'){
+
+                target.style.transform = "rotateY(0deg)"
+                target.setAttribute("data-flip", "0")   
+
+            } else {
+
+                target.style.transform = "rotateY(180deg)"
+                target.setAttribute("data-flip", "1")
+
+            }
+            
         }
     }
 }
@@ -91,13 +146,47 @@ export default {
 
 .block-img{
     width: 570px;
-    margin-top: 65px;
+    margin-top: 50px;
     margin-left:auto;
     margin-right: auto;
+    perspective: 1000px;
+    background-color: transparent;
+    user-select: none;
+    
+}
+
+.block-img-inner{
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+
+.block-img-front, .block-img-back{
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.block-img-back{
+    transform: rotateY(180deg);
 }
 
 .block-img img{
     width: 100%;
+}
+
+/*.block-img:hover .block-img-inner {
+  transform: rotateY(180deg);
+}*/
+
+.block-img-flip{
+    position: absolute;
+    width: 100%;
+    top: 300px;
+    cursor: pointer;
+}
+
+.block-img-flip svg{
+    width: 36px;
 }
 
 .block-text{

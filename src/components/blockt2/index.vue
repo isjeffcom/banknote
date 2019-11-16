@@ -85,6 +85,7 @@ export default {
 }
 
 .block-img{
+    user-select: none;
     width: 100%;
 }
 

@@ -3,8 +3,7 @@
     <hheader :navs="navs"></hheader>
     <htop :intro="intro"></htop>
     <numdata :numd="numd"></numdata>
-    <blockt1 :bdata="bdata_100" mode="left"></blockt1>
-    <blockt1 :bdata="bdata_500" mode="right"></blockt1>
+    <design :design="design"></design>
     <coin :cdata="coin"></coin>
     <secure :secure="secure"></secure>
     <sum :sumData="sumData"></sum>
@@ -19,7 +18,7 @@ import { EventBus } from '../bus'
 import hheader from "./hheader"
 import htop from './htop'
 import numdata from './numdata'
-import blockt1 from './blockt1'
+import design from './design'
 import coin from './coin'
 import secure from './secure'
 import sum from './sum'
@@ -31,7 +30,7 @@ export default {
     hheader,
     htop,
     numdata,
-    blockt1,
+    design,
     coin,
     secure,
     sum,
@@ -51,22 +50,30 @@ export default {
         { id: 1, num: 8000000, text:"", des: "More than 8 million population are using note from Bank of TB", icon: "./assets/img/2.png" },
         { id: 2, num: 32, text:"th", des: "The 32th edition of re-design by the digital artist JIANFENG WU", icon: "./assets/img/3.png" }
       ],
-      bdata_100:{
+      design:[
+        {
+          id: 0,
+          mode: "left",
           background: "#262626",
           color: "#ffffff",
           subtitle: "design",
           title: "D100",
           img: "./assets/img/100.png",
+          backImg: "./assets/img/100_back.png",
           des: "The new 100 cred design refelects a scure and prosper place for people living which the Thames Basin offers. Through the Great Shield System, the goverment of TB protects you from war and crime."
-      },
-      bdata_500:{
+        },
+        {
+          id: 1,
+          mode: "right",
           background: "#ffffff",
           color: "#262626",
           subtitle: "design",
           title: "D500",
           img: "./assets/img/500.png",
+          backImg: "./assets/img/500_back.png",
           des: "The new 500 cred design refelects the ambitions of the Great Exploration Project to the space, a territory the Thames Basin will conquer. For today, to future."
-      },
+        }
+      ],
       coin:{
         titleIcon: "./assets/img/coin_title.png",
         intro: "Coin desgin has inherted element from the note design. As coin design only take less than 1% of all money trasnfer in market. The coin mianly design for memorational purpose."

@@ -35,6 +35,7 @@ export default {
     top: 0px;
     width: 100%;
     display: flex;
+    user-select: none;
 }
 
 #h_logo{

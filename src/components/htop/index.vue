@@ -26,6 +26,7 @@ export default {
 #t_ill{
     width: 100%;
     margin-top: -60px;
+    user-select: none;
 }
 
 #t_ill img{

@@ -13,12 +13,12 @@
 
         <div id="coin-switcher">
             <div id="coin-switcher-cont">
-                <div class="coin-sw coin-sw-10" v-on:click="sw(10)">
+                <div id="sw_10" class="coin-sw coin-sw-10" v-on:click="sw(10)">
                     <span>D10</span>
                     <div class="coin-indi" v-if="coin_sw == '10'"></div>
                 </div>
 
-                <div class="coin-sw coin-sw-50" v-on:click="sw(50)">
+                <div id="sw_50" class="coin-sw coin-sw-50" v-on:click="sw(50)">
                     <span>D50</span>
                     <div class="coin-indi" v-if="coin_sw == '50'"></div>
                 </div>
@@ -50,10 +50,19 @@ export default {
     },
     data(){
         return{
-            coin_sw: "50"
+            coin_sw: "10"
         }
     },
     mounted () {
+
+        document.getElementById("sw_10").addEventListener("click", (e)=>{
+            switchObj("10")
+        })
+
+        document.getElementById("sw_50").addEventListener("click", (e)=>{
+            switchObj("50")
+        })
+
         var mixer
         // id scene
         
@@ -61,24 +70,28 @@ export default {
         scene.background = new THREE.Color( 0x262626 )
 
         // id camera
-        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 )
+        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/360, 0.1, 1000 )
         camera.position.x = 0
-        camera.position.y = -10
-        camera.position.z = 5
+        camera.position.y = 10
+        camera.position.z = 15
 
         // id renderer
         var renderer = new THREE.WebGLRenderer()
-        renderer.setSize( window.innerWidth, window.innerHeight )
+        renderer.setSize( window.innerWidth, 360 )
         var cont = document.getElementById("coin-main-canvas").appendChild( renderer.domElement )
         cont.style.outline = "none"
 
         // id controls
         var controls = new OrbitControls( camera, renderer.domElement )
         controls.target.set( 0, 0, 0 )
-        controls.minDistance = 2
-        controls.maxDistance = 20
-        controls.dampingFactor = 0.55
-        controls.minPolarAngle = 0
+        controls.minDistance = 10
+        controls.maxDistance = 40
+        controls.enableDamping = true
+        controls.dampingFactor = 0.95
+        controls.minPolarAngle = Math.PI/2;
+        controls.maxPolarAngle = Math.PI/2;
+        controls.enablePan = false
+        controls.enableZoom = false
         controls.update()
 
         var light = new THREE.AmbientLight( 0xffffff, 1 )
@@ -98,18 +111,47 @@ export default {
 
         // load model
         var loader = new FBXLoader()
-        loader.load( './assets/models/coin.fbx', function ( object ) {
+        loader.load( './assets/models/coin2.fbx', function ( object ) {
             scene.add( object )
+            object.name = "coin_10"
             object.rotation.x = 90
             object.rotation.y = 90
-            object.scale.x = 0.2
-            object.scale.y = 0.2
-            object.scale.z = 0.2
-            
+            object.position.x = 0
+            object.position.y = 0
+            object.position.z = 0
+            object.scale.x = 0.02
+            object.scale.y = 0.02
+            object.scale.z = 0.02
+            object.visible = true
         })
+
+        loader.load( './assets/models/coin.fbx', function ( object ) {
+            scene.add( object )
+            object.name = "coin_50"
+            object.rotation.x = 90
+            object.rotation.y = 90
+            object.position.x = 0
+            object.position.y = 0
+            object.position.z = 0
+            object.scale.x = 0.8
+            object.scale.y = 0.8
+            object.scale.z = 0.8
+            object.visible = false
+        })
+
+        function switchObj (tar) {
+            if(tar === "10"){
+                scene.getObjectByName("coin_10").visible = true
+                scene.getObjectByName("coin_50").visible = false
+            } else {
+                scene.getObjectByName("coin_10").visible = false
+                scene.getObjectByName("coin_50").visible = true
+            }
+        }
 
         var animate = function () {
             requestAnimationFrame( animate )
+            controls.update()
             renderer.render( scene, camera )
         }
 
@@ -135,6 +177,7 @@ canvas:focus{
 }
 
 #coin-title{
+    user-select: none;
     margin-bottom: 16px;
 }
 

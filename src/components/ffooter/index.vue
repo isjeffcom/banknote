@@ -52,6 +52,10 @@ export default {
 
 <style scoped>
 
+img{
+    user-select: none;
+}
+
 #ffooter{
     width: 100%;
     height: 200px;
