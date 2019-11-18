@@ -98,4 +98,14 @@ export default {
     margin-right: auto;
 }
 
+@media only screen and (max-device-width : 812px)  { 
+    .numdata_single{
+        width: 100%;
+    }
+    #numdata_cont{
+        display: block;
+        width: 40%;
+    }
+}
+
 </style>

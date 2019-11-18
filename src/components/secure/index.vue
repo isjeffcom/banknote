@@ -60,4 +60,15 @@ export default {
 #secure-intro{
     margin-top: 60px;
 }
+
+@media only screen and (max-device-width : 812px)  { 
+
+    #secure-title-icon img{
+        width: 32px;
+    }
+
+    #secure-title-text span{
+        font-size: 24px;
+    }
+}
 </style>

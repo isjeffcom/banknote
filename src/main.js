@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-var VueScrollTo = require('vue-scrollto');
+import axios from 'axios'
+import VueAxios from 'vue-axios'
  
+
+var VueScrollTo = require('vue-scrollto');
+
+Vue.use(VueAxios, axios)
+
 Vue.use(VueScrollTo,{container: "body",
         duration: 500,
         easing: "ease",

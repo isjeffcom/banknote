@@ -78,10 +78,6 @@ img{
     width: 220px;
 }
 
-#f-contact-tele{
-    
-}
-
 #f-contact{
     font-size: 16px;
     text-transform: uppercase;
@@ -107,6 +103,16 @@ img{
 
 #f-right-logo img{
     width: 64px;
+}
+
+@media only screen and (max-device-width : 812px)  { 
+    #f-inner{
+        display: block;
+    }
+
+    #f-contact{
+        display: block;
+    }
 }
 
 

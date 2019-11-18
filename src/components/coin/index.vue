@@ -157,11 +157,7 @@ export default {
             object.scale.y = 2.2
             object.scale.z = 2.2
             object.visible = false
-            console.log(object)
-            
         })
-
-
 
         function switchObj (tar) {
             if(tar === "10"){
@@ -172,9 +168,6 @@ export default {
                 scene.getObjectByName("coin_50").visible = true
             }
         }
-
-        
-        console.log(scene)
 
         var animate = function () {
             requestAnimationFrame( animate )

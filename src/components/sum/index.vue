@@ -34,9 +34,6 @@ export default {
     },
     props:{
         sumData: Array
-    },
-    created(){
-        console.log(this.sumData)
     }
 }
 </script>
@@ -68,6 +65,7 @@ export default {
 .sum-s-inner{
     margin-left: 50px;
     margin-top: 104px;
+    overflow:hidden;
 }
 
 .sum-s-title{
@@ -81,5 +79,12 @@ export default {
     font-size: 24px;
     font-weight: lighter;
     text-transform: uppercase;
+}
+
+@media only screen and (max-device-width : 812px)  { 
+
+    .sum-s-inner{
+        margin-left: 30px;
+    }
 }
 </style>

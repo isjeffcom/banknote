@@ -125,4 +125,37 @@ export default {
     font-size: 20px;
 }
 
+@media only screen and (max-device-width : 812px)  { 
+
+    #block-cont{
+        display: block;
+    }
+
+    #block-left{
+        width: 100%;
+    }
+
+    #block-right{
+        width: 100%;
+    }
+
+    .block-img{
+        width: 100%;
+    }
+
+    .block-text{
+        width: 100%;
+    }
+
+    .block-title{
+        font-size: 24px;
+        font-weight: bold;  
+    }
+
+    .block-des{
+        font-size: 16px;
+        font-weight: lighter;
+    }
+}
+
 </style>

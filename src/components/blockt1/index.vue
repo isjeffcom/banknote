@@ -152,7 +152,6 @@ export default {
     perspective: 1000px;
     background-color: transparent;
     user-select: none;
-    
 }
 
 .block-img-inner{
@@ -218,6 +217,31 @@ export default {
     width: 85%;
     margin-top: 6px;
     font-size: 20px;
+}
+
+@media only screen and (max-device-width : 812px)  { 
+
+    #block-cont{
+        display: block;
+    }
+
+    .block-img{
+        width: 200px;
+    }
+
+    .block-text{
+        width: 100%;
+    }
+
+    .block-title{
+        font-size: 24px;
+        font-weight: bold;  
+    }
+
+    .block-des{
+        font-size: 16px;
+        font-weight: lighter;
+    }
 }
 
 </style>
