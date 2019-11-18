@@ -94,28 +94,37 @@ export default {
         controls.enableZoom = false
         controls.update()
 
-        var light = new THREE.AmbientLight( 0xffffff, 1 )
+        var light = new THREE.AmbientLight( 0xffffff, 0.4 )
         scene.add( light )
 
-        var light2 = new THREE.DirectionalLight( 0xffffff, 1 )
-        light2.position.set( 0, 0, 5 )
+        var light2 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        light2.castShadow = true
+        light2.position.set(10, 15, 25 )
         scene.add( light2 )
 
-        var light3 = new THREE.DirectionalLight( 0xffffff, 1 )
-        light3.position.set( 0, 10, 5 )
+        var light3 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        light3.castShadow = true
+        //light3.rotation = new THREE.Vector3()
+        light3.position.set(0, 15, 10 )
         scene.add( light3 )
 
-        var light4 = new THREE.DirectionalLight( 0xffffff, 1 )
-        light4.position.set( -2, -5, 5 )
-        scene.add( light4 )
+        var light5 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        light5.castShadow = true
+        light5.position.set( -10,-15, 20 )
+        scene.add( light5 )
+
+        var light6 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        light6.castShadow = true
+        light6.position.set( 12, 2, -20 )
+        scene.add( light6 )
 
         // load model
         var loader = new FBXLoader()
         loader.load( './assets/models/coin2.fbx', function ( object ) {
             scene.add( object )
             object.name = "coin_10"
-            object.rotation.x = 90
-            object.rotation.y = 90
+            object.rotation.x = 0
+            object.rotation.y = 0
             object.position.x = 0
             object.position.y = 0
             object.position.z = 0
@@ -125,19 +134,34 @@ export default {
             object.visible = true
         })
 
-        loader.load( './assets/models/coin.fbx', function ( object ) {
+        loader.load( './assets/models/coin_50.fbx', function ( object ) {
+            object.traverse( function ( child ) {
+                if ( child.isMesh ) {
+                    child.castShadow = true
+                    child.receiveShadow = true
+                    child.material = new THREE.MeshPhysicalMaterial( {  
+                        metalness: 0.5,
+                        roughness: 0.5
+                    })
+                }
+            } )
             scene.add( object )
+
             object.name = "coin_50"
-            object.rotation.x = 90
-            object.rotation.y = 90
+            object.rotation.x = 0
+            object.rotation.y = 0
             object.position.x = 0
             object.position.y = 0
             object.position.z = 0
-            object.scale.x = 0.8
-            object.scale.y = 0.8
-            object.scale.z = 0.8
+            object.scale.x = 2.2
+            object.scale.y = 2.2
+            object.scale.z = 2.2
             object.visible = false
+            console.log(object)
+            
         })
+
+
 
         function switchObj (tar) {
             if(tar === "10"){
@@ -148,6 +172,9 @@ export default {
                 scene.getObjectByName("coin_50").visible = true
             }
         }
+
+        
+        console.log(scene)
 
         var animate = function () {
             requestAnimationFrame( animate )
