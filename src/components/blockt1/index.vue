@@ -2,7 +2,7 @@
     <div id="block-type-1">
         <div id="block-cont" :style="'background:' + bdata.background + ';color:' + bdata.color + ';'">
             <div id="block-left">
-                <div class="block-left-cont"  v-if="mode =='left'">
+                <div class="block-left-cont"  v-if="mode =='left' || isMobile">
                     <div class="block-img">
                         <div class="block-img-inner" :ref="'filp'+bdata.id">
                             <div class="block-img-front">
@@ -26,7 +26,7 @@
                     
                 </div>
 
-                <div class="block-left-cont block-text"  v-if="mode == 'right'">
+                <div class="block-left-cont block-text"  v-if="mode == 'right' && !isMobile">
                     <wsubtitle class="block-stitle" :txt="bdata.subtitle" :lineColor="bdata.color"></wsubtitle>
 
                     <div class="block-title">
@@ -41,7 +41,7 @@
             </div>
             
             <div id="block-right">
-                <div class="block-right-cont block-text" v-if="mode == 'left'">
+                <div class="block-right-cont block-text" v-if="mode == 'left' || isMobile">
                     <wsubtitle class="block-stitle" :txt="bdata.subtitle" :lineColor="bdata.color"></wsubtitle>
 
                     <div class="block-title">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="block-right-cont" v-if="mode == 'right'">
+                <div class="block-right-cont" v-if="mode == 'right' && !isMobile">
                     <div class="block-img">
                         <div class="block-img-inner" :ref="'filp'+bdata.id">
                             <div class="block-img-front">
@@ -92,6 +92,10 @@ export default {
         wsubtitle
     },
     props:{
+        isMobile: {
+            type: Boolean,
+            default: false
+        },
         mode: String,
         bdata: {
             id: Number,
@@ -132,7 +136,7 @@ export default {
 
 #block-cont{
     width: 100%;
-    height: 400px;
+    height: 100%;
     display: flex;
 }
 
@@ -145,7 +149,7 @@ export default {
 }
 
 .block-img{
-    width: 570px;
+    width: 85%;
     margin-top: 50px;
     margin-left:auto;
     margin-right: auto;
@@ -173,14 +177,10 @@ export default {
     width: 100%;
 }
 
-/*.block-img:hover .block-img-inner {
-  transform: rotateY(180deg);
-}*/
-
 .block-img-flip{
     position: absolute;
     width: 100%;
-    top: 300px;
+    top: 310px;
     cursor: pointer;
 }
 
@@ -221,26 +221,52 @@ export default {
 
 @media only screen and (max-device-width : 812px)  { 
 
+    #design_inner{
+        margin-top: -50px;
+    }
+
+    #block-type-1{
+        height: 560px;
+    }
+
     #block-cont{
         display: block;
     }
 
     .block-img{
-        width: 200px;
+        width: 92%;
+        padding-top: 40px;
     }
 
     .block-text{
-        width: 100%;
+        width: 92%;
+        margin-top: 220px;
     }
 
     .block-title{
-        font-size: 24px;
+        font-size: 32px;
         font-weight: bold;  
     }
 
     .block-des{
-        font-size: 16px;
-        font-weight: lighter;
+        font-size: 20px;
+        width: 95%;
+    }
+
+    #block-left{
+        width: 100%;
+    }
+
+    #block-right{
+        width: 100%;
+    }
+
+    .block-stitle {
+        margin-top: 0px;
+    }
+
+    .block-img-flip[data-v-656177ad] {
+        top: 230px;
     }
 }
 

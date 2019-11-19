@@ -83,8 +83,26 @@ export default {
 
 @media only screen and (max-device-width : 812px)  { 
 
+    #sum-title{
+        margin-left: 16px;
+        margin-bottom: 20px;
+    }
+
+    #sum-data{
+        display: block;
+    }
+
+    .sum-s{
+        width: 100%;
+    }
+
     .sum-s-inner{
+        margin-top: 0px;
         margin-left: 30px;
+    }
+
+    .sum-s-title{
+        margin-top: 110px;
     }
 }
 </style>

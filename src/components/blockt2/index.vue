@@ -2,13 +2,13 @@
     <div id="block-type-2">
         <div id="block-cont" :style="'background:' + bdata.background + ';color:' + bdata.color + ';'">
             <div id="block-left">
-                <div class="block-left-cont"  v-if="mode =='left'">
+                <div class="block-left-cont"  v-if="mode =='left' || isMobile">
                     <div class="block-img">
                         <img :src="bdata.img" :alt="bdata.title">
                     </div>
                 </div>
 
-                <div class="block-left-cont block-text"  v-if="mode == 'right'">
+                <div class="block-left-cont block-text"  v-if="mode == 'right' && !isMobile">
                     <wsubtitle class="block-stitle" :txt="bdata.subtitle" :lineColor="bdata.color"></wsubtitle>
 
                     <div class="block-title">
@@ -23,7 +23,7 @@
             </div>
             
             <div id="block-right">
-                <div class="block-right-cont block-text" v-if="mode == 'left'">
+                <div class="block-right-cont block-text" v-if="mode == 'left' || isMobile">
                     <wsubtitle class="block-stitle" :txt="bdata.subtitle" :lineColor="bdata.color"></wsubtitle>
 
                     <div class="block-title">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="block-right-cont" v-if="mode == 'right'">
+                <div class="block-right-cont" v-if="mode == 'right' && !isMobile">
                     <div class="block-img">
                         <img :src="bdata.img" :alt="bdata.title">
                     </div>
@@ -56,6 +56,10 @@ export default {
         wsubtitle
     },
     props:{
+        isMobile:{
+            type: Boolean,
+            default: false,
+        },
         mode: String,
         bdata: {
             background: String,
@@ -144,17 +148,19 @@ export default {
     }
 
     .block-text{
-        width: 100%;
+        width: 92%;
+        margin-top: -10px;
+        margin-bottom: 40px;
     }
 
     .block-title{
-        font-size: 24px;
+        font-size: 32px;
         font-weight: bold;  
     }
 
     .block-des{
-        font-size: 16px;
-        font-weight: lighter;
+        font-size: 20px;
+        width: 95%;
     }
 }
 

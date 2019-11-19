@@ -1,13 +1,13 @@
 <template>
   <div class="all" v-if="loaded">
-    <hheader :navs="navs"></hheader>
-    <htop :intro="intro"></htop>
-    <numdata :numd="numd"></numdata>
-    <design :design="design"></design>
+    <hheader :navs="navs" :isMobile="isMobile"></hheader>
+    <htop :intro="intro" :isMobile="isMobile"></htop>
+    <numdata :numd="numd" :isMobile="isMobile"></numdata>
+    <design :design="design" :isMobile="isMobile"></design>
     <coin :cdata="coin"></coin>
-    <secure :secure="secure"></secure>
+    <secure :secure="secure" :isMobile="isMobile"></secure>
     <sum :sumData="sumData"></sum>
-    <ffooter :foot="foot"></ffooter>
+    <ffooter :foot="foot" :isMobile="isMobile"></ffooter>
   </div>
 </template>
 
@@ -38,7 +38,11 @@ export default {
   },
   data(){
     return{
+      // Flags
       loaded: false,
+      isMobile: false,
+
+      // Data
       navs: Array,
       intro: String,
       numd: Array,
@@ -47,11 +51,32 @@ export default {
       secure: Object,
       sumData: Array,
       foot: Object,
-      idNavMap:Array
+
+      // Helper
+      idNavMap:[
+        {nav: "KEY FACTS", id: "numdata"},
+        {nav: "DESIGN", id: "block-type-1"},
+        {nav: "SECURITY", id: "secure"},
+        {nav: "SUMMARY", id: "sum"},
+      ]
     }
   },
+
+  mounted(){
+    // Do once on load
+    this.isMobile = document.body.clientWidth < 600 ? true : false
+
+    // Do when resize
+    addEventListener("resize", (e)=>{
+      this.isMobile = document.body.clientWidth < 600 ? true : false
+    })
+  },
   created(){
-    
+    if(window.scrollY != 0){
+      this.$scrollTo("#app", 20, { offset: 0})
+    }
+
+    // Feed in data from json
     this.axios.get("./data.json").then((response) => {
       var res = response.data
       this.navs = res.navs
@@ -73,7 +98,7 @@ export default {
     EventBus.$on("to", (val)=>{
       for(var i=0;i<this.idNavMap.length;i++){
         if(val == this.idNavMap[i].nav){
-          this.$scrollTo("#"+this.idNavMap[i].id, 500)
+          this.$scrollTo("#"+this.idNavMap[i].id, 500, { offset: -100})
         }
       }
     })

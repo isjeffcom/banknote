@@ -1,7 +1,7 @@
 <template>
     <div id="top">
         <div id="t_ill">
-            <img :src="topSrc" alt="">
+            <img :src="isMobile ? bgMobile : bg" alt="new banknote design released">
         </div>
 
         <div id="t_intro">
@@ -17,32 +17,17 @@ import { isMobile } from '../../utils'
 export default {
     name: "htop",
     props:{
+        isMobile: {
+            type: Boolean,
+            default: false
+        },
         intro: String,
     },
     data () {
         return{
-            topSrc: "",
             bg: "./assets/img/top_ill.png",
             bgMobile: "./assets/img/top_ill_mob.png"
         }
-    },
-    mounted(){
-        if(document.body.clientWidth < 600){
-            this.topSrc = this.bgMobile
-        } else {
-            this.topSrc = this.bg
-        }
-
-        addEventListener("resize", (e)=>{
-            if(document.body.clientWidth < 600){
-                
-                this.topSrc = this.bgMobile
-            } else {
-                this.topSrc = this.bg
-            }
-        })
-
-        
     }
 }
 </script>
@@ -92,7 +77,7 @@ export default {
     }
 
     #t_intro span{
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 </style>

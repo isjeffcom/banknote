@@ -76,7 +76,7 @@ export default {
         camera.position.z = 15
 
         // id renderer
-        var renderer = new THREE.WebGLRenderer()
+        var renderer = new THREE.WebGLRenderer({antialias: true})
         renderer.setSize( window.innerWidth, 360 )
         var cont = document.getElementById("coin-main-canvas").appendChild( renderer.domElement )
         cont.style.outline = "none"
@@ -94,33 +94,32 @@ export default {
         controls.enableZoom = false
         controls.update()
 
-        var light = new THREE.AmbientLight( 0xffffff, 0.4 )
+        var light = new THREE.AmbientLight( 0xffffff, 0.3 )
         scene.add( light )
 
-        var light2 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        var light2 = new THREE.DirectionalLight( 0xffffff, 0.2 )
         light2.castShadow = true
-        light2.position.set(10, 15, 25 )
+        light2.position.set(10, 30, 25 )
         scene.add( light2 )
 
-        var light3 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        var light3 = new THREE.DirectionalLight( 0xffffff, 0.2 )
         light3.castShadow = true
-        //light3.rotation = new THREE.Vector3()
-        light3.position.set(0, 15, 10 )
+        light3.position.set(0, 30, 10 )
         scene.add( light3 )
 
-        var light5 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        var light5 = new THREE.DirectionalLight( 0xffffff, 0.2 )
         light5.castShadow = true
         light5.position.set( -10,-15, 20 )
         scene.add( light5 )
 
-        var light6 = new THREE.DirectionalLight( 0xffffff, 0.25 )
+        var light6 = new THREE.DirectionalLight( 0xffffff, 0.2 )
         light6.castShadow = true
-        light6.position.set( 12, 2, -20 )
+        light6.position.set( 12, -30, -20 )
         scene.add( light6 )
 
         // load model
         var loader = new FBXLoader()
-        loader.load( './assets/models/coin2.fbx', function ( object ) {
+        loader.load( './assets/models/coin_50.fbx', function ( object ) {
             scene.add( object )
             object.name = "coin_10"
             object.rotation.x = 0
@@ -128,9 +127,9 @@ export default {
             object.position.x = 0
             object.position.y = 0
             object.position.z = 0
-            object.scale.x = 0.02
-            object.scale.y = 0.02
-            object.scale.z = 0.02
+            object.scale.x = 2.2
+            object.scale.y = 2.2
+            object.scale.z = 2.2
             object.visible = true
         })
 
@@ -139,12 +138,13 @@ export default {
                 if ( child.isMesh ) {
                     child.castShadow = true
                     child.receiveShadow = true
-                    child.material = new THREE.MeshPhysicalMaterial( {  
+                    child.material = new THREE.MeshStandardMaterial( {
+                        reflectivity: 1,
                         metalness: 0.5,
                         roughness: 0.5
                     })
                 }
-            } )
+            })
             scene.add( object )
 
             object.name = "coin_50"
@@ -261,6 +261,12 @@ canvas:focus{
 #coin-intro-inner span{
     font-size: 18px;
     font-weight: lighter;
+}
+
+@media only screen and (max-device-width : 812px)  { 
+    #coin-intro{
+        width: 80%;
+    }
 }
 
 

@@ -30,6 +30,10 @@ export default {
         ICountUp
     },
     props:{
+        isMobile: {
+            type: Boolean,
+            default: false
+        },
         numd: Array
     },
     data(){
@@ -46,11 +50,16 @@ export default {
     },
     mounted(){
         var that = this
-        addEventListener("scroll", (e)=>{
-            if(window.scrollY > 30){
-                that.viewable = true
-            }
-        })
+        if(!this.isMobile){
+            addEventListener("scroll", (e)=>{
+                if(window.scrollY > 30){
+                    that.viewable = true
+                }
+            })
+        } else {
+            that.viewable = true
+        }
+
         
     }
     
@@ -99,12 +108,33 @@ export default {
 }
 
 @media only screen and (max-device-width : 812px)  { 
+
+    #numdata{
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+
     .numdata_single{
         width: 100%;
+        margin-bottom: 60px;
     }
+    
     #numdata_cont{
         display: block;
-        width: 40%;
+        width: 60%;
+    }
+
+    .n_icon img{
+        width: 60px;
+    }
+
+    .n_num span{
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .n_des{
+        width: 100%;
     }
 }
 

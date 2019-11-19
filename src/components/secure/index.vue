@@ -12,7 +12,7 @@
 
         <div id="secure-intro">
             <div v-for="item in secure.sdata" :key="item.id">
-                <blockt2 :bdata="item" :mode="item.mode"></blockt2>
+                <blockt2 :bdata="item" :mode="item.mode" :isMobile="isMobile"></blockt2>
             </div>
         </div>
     </div>
@@ -28,6 +28,7 @@ export default {
         blockt2
     },
     props: {
+        isMobile: Boolean,
         secure:{
             titleIcon: String,
             title: String,
@@ -62,6 +63,14 @@ export default {
 }
 
 @media only screen and (max-device-width : 812px)  { 
+
+    #secure{
+        margin-top: 60px;
+    }
+
+    #secure-intro{
+        margin-top: 30px;
+    }
 
     #secure-title-icon img{
         width: 32px;

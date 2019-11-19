@@ -1,7 +1,7 @@
 <template>
     <div id="ffooter">
         <div id="f-inner">
-            <div id="f-logo">
+            <div id="f-logo" v-if="!isMobile">
                 <img :src="foot.logo" alt="bank of thames basin">
             </div>
 
@@ -21,6 +21,10 @@
                 </div>
             </div>
 
+            <div id="f-logo" v-if="isMobile">
+                <img :src="foot.logo" alt="bank of thames basin">
+            </div>
+
             <div id="f-right">
                 <div id="f-right-logo">
                     <img :src="foot.wIcon" alt="gs system logo">
@@ -38,6 +42,10 @@
 export default {
     name: "ffooter",
     props:{
+        isMobile:{
+            type: Boolean,
+            default: false
+        },
         foot:{
             logo: String,
             tel: String,
@@ -106,12 +114,41 @@ img{
 }
 
 @media only screen and (max-device-width : 812px)  { 
+
+    #ffooter{
+        height: auto;
+    }
+
+    #f-logo{
+        margin-left: 30px;
+        margin-top: 0px;
+        padding-top: 70px;
+    }
+
+    #f-contact{
+        margin-top: 80px;
+        margin-left: 30px;
+    }
+
+    #f-contact-add{
+        margin-top: 40px;
+        margin-left: 0px;
+    }
+
     #f-inner{
         display: block;
+        padding-top:10px;
+        padding-bottom: 30px;
     }
 
     #f-contact{
         display: block;
+    }
+
+    #f-right{
+        position: relative;
+        right: 0px;
+        margin-left: 30px;
     }
 }
 

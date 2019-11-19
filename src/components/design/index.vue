@@ -1,7 +1,7 @@
 <template>
     <div id="design">
         <div id="design_inner" v-for="item in design" :key="item.id">
-            <blockt1 :bdata="item" :mode="item.mode"></blockt1>
+            <blockt1 :bdata="item" :mode="item.mode" :isMobile="isMobile"></blockt1>
         </div>
     </div>
 </template>
@@ -14,7 +14,8 @@ export default {
         blockt1
     },
     props:{
-        design: Array
+        design: Array,
+        isMobile: Boolean
     }
 }
 </script>

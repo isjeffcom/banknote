@@ -38,4 +38,10 @@ export default {
     height: 1px;
     background: #ffffff;
 }
+
+@media only screen and (max-device-width : 812px)  { 
+    #sub_text span{
+        font-size: 18px;
+    }
+}
 </style>
