@@ -113,7 +113,19 @@ img{
     width: 64px;
 }
 
-@media only screen and (max-device-width : 812px)  { 
+@media only screen and (max-width : 1200px) and (min-width: 812px)  { 
+    #f-contact{
+        display: block;
+    }
+
+    #f-contact-add{
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+}
+
+@media only screen and (max-width : 812px)  { 
 
     #ffooter{
         height: auto;

@@ -8,6 +8,11 @@
     <secure :secure="secure" :isMobile="isMobile"></secure>
     <sum :sumData="sumData" :poster="poster"></sum>
     <ffooter :foot="foot" :isMobile="isMobile"></ffooter>
+
+    <transition name="pop">
+      <popup :popData="popData" v-if="popupAlert"></popup>
+    </transition>
+    
   </div>
 </template>
 
@@ -23,6 +28,7 @@ import coin from './coin'
 import secure from './secure'
 import sum from './sum'
 import ffooter from './ffooter'
+import popup from './popup'
 
 export default {
   name: 'all',
@@ -34,13 +40,15 @@ export default {
     coin,
     secure,
     sum,
-    ffooter
+    ffooter,
+    popup
   },
   data(){
     return{
       // Flags
       loaded: false,
       isMobile: false,
+      lastIsMobile: Boolean,
 
       // Data
       navs: Array,
@@ -59,13 +67,33 @@ export default {
         {nav: "DESIGN", id: "block-type-1"},
         {nav: "SECURITY", id: "secure"},
         {nav: "SUMMARY", id: "sum"},
-      ]
+      ],
+
+      popData: {
+        bgColor: "#00FFC3",
+        txt: "View window size appear to be changed, refresh is recommoned.",
+        act: "Refresh"
+      },
+
+      popupAlert: false
     }
   },
-
+  watch:{
+    isMobile: function() {
+      if(this.lastIsMobile != this.isMobile){
+        this.popupAlert = true
+        //this.lastIsMobile = this.isMobile
+      } else {
+        this.popupAlert = false
+      }
+    }
+  },
   mounted(){
     // Do once on load
     this.isMobile = document.body.clientWidth < 600 ? true : false
+
+    // Var for detect if the is mobile status is changed
+    this.lastIsMobile = this.isMobile
 
     // Do when resize
     addEventListener("resize", (e)=>{
@@ -110,6 +138,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+@keyframes popup {
+  0% {opacity: 0; transform: translateY(70px);}
+  100% {opacity: 1; transform: translateY(0px);}
+}
+
 h3 {
   margin: 40px 0 0;
 }
@@ -123,5 +157,14 @@ li {
 }
 a {
   color: #42b983;
+}
+.pop-enter-active {
+  animation: popup .8s;
+  animation-fill-mode: forwards;
+}
+
+.pop-leave-active {
+  animation: popup .8s reverse;
+  animation-fill-mode: forwards;
 }
 </style>

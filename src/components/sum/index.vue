@@ -97,8 +97,19 @@ export default {
     text-transform: uppercase;
 }
 
-.sun-more{
-    margin-top: 60px;
+#sum-more{
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+#sum-more-btn{
+    cursor: pointer;
+}
+
+#sum-more-btn span{
+    font-size: 24px;
+    text-decoration: underline;
+    color: #333;
 }
 
 @media only screen and (max-device-width : 812px)  { 
