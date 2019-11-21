@@ -94,6 +94,7 @@ export default {
 }
 
 .n_num span{
+    font-family: robotoBold;
     font-size: 32px;
     font-weight: bold;
 }

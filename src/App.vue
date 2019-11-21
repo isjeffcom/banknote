@@ -16,6 +16,17 @@ export default {
 </script>
 
 <style>
+
+@font-face {
+  font-family: robotoRegular;
+  src: url('./assets/font/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: robotoBold;
+  src: url('./assets/font/Roboto-Bold.ttf');
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -23,7 +34,7 @@ export default {
 
 #app {
   background: #ffffff;
-  font-family: 'Roboto';
+  font-family: robotoRegular;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

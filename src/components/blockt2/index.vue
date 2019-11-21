@@ -106,6 +106,7 @@ export default {
 }
 
 .block-title{
+    font-family: robotoBold;
     font-size: 44px;
     font-weight: bold;  
 }
