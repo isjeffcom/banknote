@@ -6,7 +6,7 @@
     <design :design="design" :isMobile="isMobile"></design>
     <coin :cdata="coin"></coin>
     <secure :secure="secure" :isMobile="isMobile"></secure>
-    <sum :sumData="sumData"></sum>
+    <sum :sumData="sumData" :poster="poster"></sum>
     <ffooter :foot="foot" :isMobile="isMobile"></ffooter>
   </div>
 </template>
@@ -50,6 +50,7 @@ export default {
       coin: Object,
       secure: Object,
       sumData: Array,
+      poster: Array,
       foot: Object,
 
       // Helper
@@ -86,6 +87,7 @@ export default {
       this.coin = res.coin
       this.secure = res.secure
       this.sumData = res.sumData
+      this.poster = res.poster
       this.foot = res.foot
 
       this.$nextTick(()=>{

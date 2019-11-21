@@ -116,6 +116,12 @@
             "background": "#4674AB"
         }
     ],
+    "poster": [
+        {
+            "name" : "poster",
+            "url": "./assets/img/poster.png"
+        }
+    ],
     "foot": {
         "logo": "./assets/img/flogo.png",
         "tel": "+33 07837442833 - 19",

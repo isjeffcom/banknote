@@ -111,7 +111,7 @@ export default {
     top: 0px;
     width: 100%;
     height: 100px;
-    z-index: 9999;
+    z-index: 20;
     display: flex;
     user-select: none;
     background: rgba(0,0,0,0);
@@ -151,7 +151,7 @@ export default {
 
 #h_menu{
     position: fixed;
-    z-index: 9998;
+    z-index: 19;
     height: 100%;
     width: 100%;
     background: #262626;
@@ -176,7 +176,7 @@ export default {
 #h_nav_inner_mob{
     position: fixed;
     right: 20px;
-    z-index: 9999;
+    z-index: 20;
 }
 
 .h_nav_ham_s{

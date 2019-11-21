@@ -20,11 +20,17 @@
 
             </div>
         </div>
+
+
+        <div id="sum-more">
+            <div id="sum-more-btn">
+                <span v-on:click="viewImage(0)">Full Release Detail >></span>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-
 import wsubtitle from '../widgets/wsubtitle'
 
 export default {
@@ -33,7 +39,17 @@ export default {
         wsubtitle
     },
     props:{
-        sumData: Array
+        sumData: Array,
+        poster: Array
+    },
+    created(){
+        this.$imageViewer.images(this.poster)
+    },
+    methods:{
+        viewImage(index) {
+            this.$imageViewer.index(index)
+            this.$imageViewer.show()
+        }
     }
 }
 </script>
@@ -65,7 +81,7 @@ export default {
 .sum-s-inner{
     margin-left: 50px;
     margin-top: 104px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .sum-s-title{
@@ -79,6 +95,10 @@ export default {
     font-size: 24px;
     font-weight: lighter;
     text-transform: uppercase;
+}
+
+.sun-more{
+    margin-top: 60px;
 }
 
 @media only screen and (max-device-width : 812px)  { 
