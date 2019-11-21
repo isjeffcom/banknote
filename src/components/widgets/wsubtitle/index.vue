@@ -26,7 +26,7 @@ export default {
 }
 
 #sub_text span{
-    font-family: 'Roboto Mono';
+    font-family: robotoRegular;
     font-size: 24px;
     font-weight: lighter;
     letter-spacing: 1.36px;

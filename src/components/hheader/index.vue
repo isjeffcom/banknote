@@ -134,7 +134,7 @@ export default {
 
 #h_nav_inner{
     display: flex;
-    margin-top: 48px;
+    margin-top: 44px;
 }
 
 .h_nav_single{

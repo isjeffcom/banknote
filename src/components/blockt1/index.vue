@@ -149,7 +149,7 @@ export default {
 }
 
 .block-img{
-    width: 85%;
+    width: 80%;
     margin-top: 50px;
     margin-left:auto;
     margin-right: auto;
@@ -180,7 +180,8 @@ export default {
 .block-img-flip{
     position: absolute;
     width: 100%;
-    top: 310px;
+    height: 20px;
+    bottom: -340px;
     cursor: pointer;
 }
 
@@ -196,6 +197,7 @@ export default {
 }
 
 .block-title{
+    font-family: robotoBold;
     font-size: 44px;
     font-weight: bold;  
 }
@@ -265,7 +267,7 @@ export default {
         margin-top: 0px;
     }
 
-    .block-img-flip[data-v-656177ad] {
+    .block-img-flip {
         top: 230px;
     }
 }

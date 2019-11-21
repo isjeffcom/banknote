@@ -6,7 +6,7 @@
             </div>
 
             <div id="secure-title-text">
-                <span style="font-weight: lighter">{{secure.title}} <span style="font-weight: bold;">{{secure.titleBold}}</span> </span>
+                <span style="font-weight: lighter">{{secure.title}} <span style="font-family: robotoBold;">{{secure.titleBold}}</span> </span>
             </div>
         </div>
 

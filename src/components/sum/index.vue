@@ -69,8 +69,8 @@ export default {
 }
 
 .sum-s-title{
+    font-family: robotoBold;
     font-size: 32px;
-    font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 6px;
 }
