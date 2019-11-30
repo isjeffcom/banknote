@@ -63,6 +63,7 @@ export default {
 
       // Helper
       idNavMap:[
+        {nav: "top", id: "app"},
         {nav: "KEY FACTS", id: "numdata"},
         {nav: "DESIGN", id: "block-type-1"},
         {nav: "SECURITY", id: "secure"},

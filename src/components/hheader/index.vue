@@ -1,6 +1,6 @@
 <template>
     <div id="hheader">
-        <div id="h_logo">
+        <div id="h_logo" v-on:click="goto('top')">
             <img :src="isMobile ? logoW : logo" alt="bank of thames basin logo">
         </div>
 
@@ -121,6 +121,7 @@ export default {
 #h_logo{
     margin-left:40px;
     margin-top: 36px;
+    cursor: pointer;
 }
 
 #h_logo img{
