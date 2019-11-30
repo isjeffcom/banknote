@@ -3,13 +3,13 @@
         <div id="block-cont" :style="'background:' + bdata.background + ';color:' + bdata.color + ';'">
             <div id="block-left">
                 <div class="block-left-cont"  v-if="mode =='left' || isMobile">
-                    <div class="block-img" v-on:click="flip(bdata.id)">
+                    <div class="block-img">
                         <div class="block-img-inner" :ref="'filp'+bdata.id">
-                            <div class="block-img-front">
+                            <div class="block-img-front" v-on:click="flip(bdata.id)">
                                 <img :src="bdata.img" :alt="bdata.title">
                             </div>
 
-                            <div class="block-img-back">
+                            <div class="block-img-back" v-on:click="flip(bdata.id)">
                                 <img :src="bdata.backImg" :alt="bdata.title">
                             </div>
                         </div>
@@ -54,13 +54,13 @@
                 </div>
 
                 <div class="block-right-cont" v-if="mode == 'right' && !isMobile">
-                    <div class="block-img" v-on:click="flip(bdata.id)">
+                    <div class="block-img">
                         <div class="block-img-inner" :ref="'filp'+bdata.id">
-                            <div class="block-img-front">
+                            <div class="block-img-front" v-on:click="flip(bdata.id)">
                                 <img :src="bdata.img" :alt="bdata.title">
                             </div>
 
-                            <div class="block-img-back">
+                            <div class="block-img-back" v-on:click="flip(bdata.id)">
                                 <img :src="bdata.backImg" :alt="bdata.title">
                             </div>
                         </div>
