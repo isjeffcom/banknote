@@ -1,7 +1,8 @@
 <template>
     <div id="top">
-        <div id="t_ill">
-            <img :src="isMobile ? bgMobile : bg" alt="new banknote design released">
+        <div id="t_ill" @mouseenter="hoverBack(true)" @mouseleave="hoverBack(false)">
+            <img :src="isMobile ? bgMobile : bg" alt="new banknote design released"  v-show="!animatedTop">
+            <img :src="aniBack" alt="new banknote design released"  v-show="animatedTop">
         </div>
 
         <div id="t_intro">
@@ -26,7 +27,14 @@ export default {
     data () {
         return{
             bg: "./assets/img/top_ill.png",
-            bgMobile: "./assets/img/top_ill_mob.png"
+            bgMobile: "./assets/img/top_ill_mob.png",
+            aniBack: "./assets/img/backani.gif",
+            animatedTop: false,
+        }
+    },
+    methods:{
+        hoverBack(bol){
+            this.animatedTop = bol
         }
     }
 }
