@@ -101,25 +101,28 @@
             "id": 0,
             "title": "publish date",
             "val": "20.02.2148",
-            "background": "#AB7D46"
+            "background": "#AB7D46",
+            "link": ""
         },
         {
             "id": 1,
             "title": "total value",
             "val": "D100,000M",
-            "background": "#3B3B3B"
+            "background": "#3B3B3B",
+            "link": ""
         },
         {
             "id": 2,
             "title": "ARTIST",
             "val": "JIANFENG WU",
-            "background": "#4674AB"
+            "background": "#4674AB",
+            "link": "https://isjeff.com"
         }
     ],
     "poster": [
         {
             "name" : "poster",
-            "url": "./assets/img/poster.png"
+            "url": "./assets/img/poster.gif"
         }
     ],
     "foot": {

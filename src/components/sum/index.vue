@@ -5,9 +5,9 @@
         </div>
 
         <div id="sum-data">
-            <div class="sum-s" v-for="item in sumData" :key="item.id" :style="'background:' + item.background">
+            <div class="sum-s" v-for="item in sumData" :key="item.id" :style="'background:' + item.background + ';'" v-on:click="openLink(item.link)">
 
-                <div class="sum-s-inner">
+                <div class="sum-s-inner" :style="item.link.length > 1 ? 'cursor:pointer' : 'cursor:default'">
                     <div class="sum-s-title">
                         <span>{{item.title}}</span>
                     </div>
@@ -24,7 +24,7 @@
 
         <div id="sum-more">
             <div id="sum-more-btn">
-                <span v-on:click="viewImage(0)">Full Release Detail >></span>
+                <span v-on:click="viewImage(0)">About Thames Basin >></span>
             </div>
         </div>
     </div>
@@ -49,6 +49,12 @@ export default {
         viewImage(index) {
             this.$imageViewer.index(index)
             this.$imageViewer.show()
+        },
+
+        openLink (val) {
+            if(val.length > 1){
+                window.open(val, "_blank")
+            }
         }
     }
 }
@@ -76,6 +82,11 @@ export default {
     height: 280px;
     color: #ffffff;
     text-align: left;
+    transition:all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.sum-s:hover{
+    filter: contrast(130%);
 }
 
 .sum-s-inner{
