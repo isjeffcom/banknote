@@ -3,7 +3,7 @@
         <div id="block-cont" :style="'background:' + bdata.background + ';color:' + bdata.color + ';'">
             <div id="block-left">
                 <div class="block-left-cont"  v-if="mode =='left' || isMobile">
-                    <div class="block-img">
+                    <div class="block-img" v-on:click="flip(bdata.id)">
                         <div class="block-img-inner" :ref="'filp'+bdata.id">
                             <div class="block-img-front">
                                 <img :src="bdata.img" :alt="bdata.title">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="block-right-cont" v-if="mode == 'right' && !isMobile">
-                    <div class="block-img">
+                    <div class="block-img" v-on:click="flip(bdata.id)">
                         <div class="block-img-inner" :ref="'filp'+bdata.id">
                             <div class="block-img-front">
                                 <img :src="bdata.img" :alt="bdata.title">
@@ -150,12 +150,14 @@ export default {
 
 .block-img{
     width: 80%;
+    max-width: 610px;
     margin-top: 50px;
     margin-left:auto;
     margin-right: auto;
     perspective: 1000px;
     background-color: transparent;
     user-select: none;
+    cursor: pointer;
 }
 
 .block-img-inner{
