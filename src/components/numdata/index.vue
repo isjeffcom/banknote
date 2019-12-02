@@ -52,7 +52,7 @@ export default {
         var that = this
         if(!this.isMobile){
             addEventListener("scroll", (e)=>{
-                if(window.scrollY > 30){
+                if(window.scrollY > 10){
                     that.viewable = true
                 }
             })

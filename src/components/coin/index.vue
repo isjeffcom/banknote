@@ -119,7 +119,21 @@ export default {
 
         // load model
         var loader = new FBXLoader()
-        loader.load( './assets/models/coin_50.fbx', function ( object ) {
+        loader.load( './assets/models/coin_10.fbx', function ( object ) {
+
+            object.traverse( function ( child ) {
+                if ( child.isMesh ) {
+                    child.castShadow = true
+                    child.receiveShadow = true
+                    child.material = new THREE.MeshStandardMaterial( {
+                        reflectivity: 1,
+                        metalness: 0.5,
+                        roughness: 0.5
+                    })
+                }
+            })
+            
+            
             scene.add( object )
             object.name = "coin_10"
             object.rotation.x = 0

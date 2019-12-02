@@ -2,7 +2,9 @@
     <div id="top">
         <div id="t_ill" @mouseenter="hoverBack(true)" @mouseleave="hoverBack(false)">
             <img :src="isMobile ? bgMobile : bg" alt="new banknote design released"  v-show="!animatedTop">
-            <img :src="aniBack" alt="new banknote design released"  v-show="animatedTop">
+            <video v-show="animatedTop" ref="backAniVideo" muted="muted" loop>
+                <source :src="aniBackVideo" type="video/mp4">
+            </video>
         </div>
 
         <div id="t_intro">
@@ -14,7 +16,6 @@
 </template>
 
 <script>
-import { isMobile } from '../../utils'
 export default {
     name: "htop",
     props:{
@@ -26,14 +27,25 @@ export default {
     },
     data () {
         return{
-            bg: "./assets/img/top_ill.png",
+            bg: "./assets/img/top_10.jpg",
             bgMobile: "./assets/img/top_ill_mob.png",
-            aniBack: "./assets/img/backani.gif",
+            aniBackVideo: "./assets/video/top_1.mp4",
             animatedTop: false,
         }
     },
     methods:{
         hoverBack(bol){
+            if(!this.$refs.backAniVideo || this.isMobile){
+                return
+            }
+
+            if(bol){
+                this.$refs.backAniVideo.play()
+            } else {
+                this.$refs.backAniVideo.pause()
+                this.$refs.backAniVideo.currentTime = 0
+            }
+            
             this.animatedTop = bol
         }
     }
@@ -49,6 +61,10 @@ export default {
 }
 
 #t_ill img{
+    width: 100%;
+}
+
+#t_ill video{
     width: 100%;
 }
 

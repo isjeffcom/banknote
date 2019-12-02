@@ -21,14 +21,14 @@
     "numd": [
         {
             "id": 0,
-            "num": 20,
+            "num": 29,
             "text": "%",
-            "des": "The 20% of trade market transfer made by note and coin",
+            "des": "The 29% of trade market transfer made by note and coin",
             "icon": "./assets/img/1.png"
         },
         {
             "id": 1,
-            "num": 10000000,
+            "num": 8472326,
             "text": "",
             "des": "More than 8 million population are using note from Bank of TB",
             "icon": "./assets/img/2.png"
