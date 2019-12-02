@@ -16,17 +16,28 @@
                         <span>{{item.val}}</span>
                     </div>
                 </div>
-                
-
             </div>
         </div>
 
 
         <div id="sum-more">
             <div id="sum-more-btn">
-                <span v-on:click="viewImage(0)">About Thames Basin >></span>
+                <span v-on:click="viewImage">About Thames Basin >></span>
             </div>
         </div>
+
+        <transition name="lightbox">
+            <div id="img-lightbox" v-if="imgShow" v-on:click="viewImage">
+                <div id="img-lightbox-inner">
+                    <img :src="poster[0].url">
+                </div>
+
+                <div id="img-lightbox-close">
+                    <span>CLOSE</span>
+                </div>
+            </div>
+        </transition>
+
     </div>
 </template>
 
@@ -42,13 +53,14 @@ export default {
         sumData: Array,
         poster: Array
     },
-    created(){
-        this.$imageViewer.images(this.poster)
+    data(){
+        return{
+            imgShow: false
+        }
     },
     methods:{
-        viewImage(index) {
-            this.$imageViewer.index(index)
-            this.$imageViewer.show()
+        viewImage() {
+            this.imgShow = !this.imgShow
         },
 
         openLink (val) {
@@ -61,6 +73,26 @@ export default {
 </script>
 
 <style scoped>
+
+.lightbox-enter-active {
+  animation: lightbox .2s;
+  animation-direction: forwards;
+}
+.lightbox-leave-active {
+  animation: lightbox .12s reverse;
+  animation-direction: forwards;
+}
+
+@keyframes lightbox {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
 #sum{
     margin-bottom: 50px;
@@ -121,6 +153,33 @@ export default {
     font-size: 24px;
     text-decoration: underline;
     color: #333;
+}
+
+#img-lightbox{
+    position: fixed;
+    top: 0px;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+}
+
+#img-lightbox-inner{
+    height: 80%;
+    transform: translateY(10%);
+}
+
+#img-lightbox-inner img{
+    height: 100%;
+}
+
+#img-lightbox-close{
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    font-size: 26px;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 @media only screen and (max-device-width : 812px)  { 

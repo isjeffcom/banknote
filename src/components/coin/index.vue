@@ -65,6 +65,10 @@ export default {
 
         var mixer
         // id scene
+
+        var currentObj
+
+        var stopAni = false
         
         var scene = new THREE.Scene()
         scene.background = new THREE.Color( 0x262626 )
@@ -80,6 +84,22 @@ export default {
         renderer.setSize( window.innerWidth, 360 )
         var cont = document.getElementById("coin-main-canvas").appendChild( renderer.domElement )
         cont.style.outline = "none"
+
+        cont.addEventListener("touchstart", (e)=>{
+            stopAni = true
+        })
+
+        cont.addEventListener("touchend", (e)=>{
+            stopAni = false
+        })
+
+        cont.addEventListener("mousedown", (e)=>{
+            stopAni = true
+        })
+
+        cont.addEventListener("mouseup", (e)=>{
+            stopAni = false
+        })
 
         // id controls
         var controls = new OrbitControls( camera, renderer.domElement )
@@ -123,11 +143,7 @@ export default {
                 if ( child.isMesh ) {
                     child.castShadow = true
                     child.receiveShadow = true
-                    child.material = new THREE.MeshStandardMaterial( {
-                        reflectivity: 1,
-                        metalness: 0.5,
-                        roughness: 0.5
-                    })
+                    child = giveMat(child)
                 }
             })
             
@@ -144,6 +160,7 @@ export default {
             object.scale.z = 2.2
             object.rotateZ = 0.5
             object.visible = true
+            currentObj = object
         })
 
         loader.load( './assets/models/coin_50.fbx', function ( object ) {
@@ -154,33 +171,7 @@ export default {
                     child.castShadow = true
                     child.receiveShadow = true
                     
-                    // Defind material by parts
-                    if(child.name.indexOf('pasted__typeMesh') != -1){
-                        child.material = new THREE.MeshStandardMaterial( {
-                            color: "0xffffff",
-                            reflectivity: 0.8,
-                            metalness: 0.2,
-                            roughness: 0.8
-                        })
-                    } 
-
-                    else if(child.name.indexOf('pCube') != -1){
-                        child.material = new THREE.MeshStandardMaterial( {
-                            color: "0xffffff",
-                            reflectivity: 0.9,
-                            metalness: 0.2,
-                            roughness: 0.8
-                        })
-                    }
-                    
-                    
-                    else {
-                        child.material = new THREE.MeshStandardMaterial( {
-                            reflectivity: 1,
-                            metalness: 0.5,
-                            roughness: 0.5
-                        })
-                    }
+                    child = giveMat(child)
 
                     
                 }
@@ -203,13 +194,48 @@ export default {
             if(tar === "10"){
                 scene.getObjectByName("coin_10").visible = true
                 scene.getObjectByName("coin_50").visible = false
+                currentObj = scene.getObjectByName("coin_10")
             } else {
                 scene.getObjectByName("coin_10").visible = false
                 scene.getObjectByName("coin_50").visible = true
+                currentObj = scene.getObjectByName("coin_50")
             }
         }
 
+        function giveMat (obj) {
+            var white = new THREE.Color( 0xbfbfbf )
+             // Defind material by parts
+            if(obj.name.indexOf('pasted__typeMesh') != -1){
+                obj.material = new THREE.MeshStandardMaterial( {
+                    color: white,
+                    metalness: 0.25,
+                    roughness: 0.2
+                })
+            } 
+
+            else if(obj.name.indexOf('pCube') != -1){
+                obj.material = new THREE.MeshStandardMaterial( {
+                    color: white,
+                    metalness: 0.25,
+                    roughness: 0.2
+                })
+            }
+            
+            
+            else {
+                obj.material = new THREE.MeshStandardMaterial( {
+                    metalness: 0.8,
+                    roughness: 0.4
+                })
+            }
+
+            return obj
+        }
+
         var animate = function () {
+            if(currentObj && !stopAni){
+                currentObj.rotation.y = currentObj.rotation.y + 0.002
+            }
             requestAnimationFrame( animate )
             controls.update()
             renderer.render( scene, camera )

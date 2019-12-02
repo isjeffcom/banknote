@@ -102,6 +102,11 @@ export default {
     })
   },
   created(){
+
+    if(window.location.href.indexOf("http") == -1){
+      alert("This website require running in server environment")
+    }
+    
     if(window.scrollY != 0){
       this.$scrollTo("#app", 20, { offset: 0})
     }
