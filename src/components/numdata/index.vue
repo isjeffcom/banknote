@@ -77,6 +77,8 @@ export default {
 #numdata_cont{
     display: flex;
     width: 60%;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
 }

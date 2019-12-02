@@ -94,29 +94,27 @@ export default {
         controls.enableZoom = false
         controls.update()
 
-        var light = new THREE.AmbientLight( 0xffffff, 0.3 )
+        var light = new THREE.AmbientLight( 0xffffff, 0.4 )
         scene.add( light )
 
-        var light2 = new THREE.DirectionalLight( 0xffffff, 0.2 )
-        light2.castShadow = true
-        light2.position.set(10, 30, 25 )
-        scene.add( light2 )
+        // Triangle Light Front
+        addDiLight("1", 0, 30, 30, true)
+        addDiLight("2", -20, -10, 30, true)
+        addDiLight("3", 20, -10, 30, true)
 
-        var light3 = new THREE.DirectionalLight( 0xffffff, 0.2 )
-        light3.castShadow = true
-        light3.position.set(0, 30, 10 )
-        scene.add( light3 )
+        // Triangle Light Back
+        addDiLight("4", 0, 30, -30, true)
+        addDiLight("5", -20, -10, -30, true)
+        addDiLight("6", 20, -10, -30, true)
 
-        var light5 = new THREE.DirectionalLight( 0xffffff, 0.2 )
-        light5.castShadow = true
-        light5.position.set( -10,-15, 20 )
-        scene.add( light5 )
 
-        var light6 = new THREE.DirectionalLight( 0xffffff, 0.2 )
-        light6.castShadow = true
-        light6.position.set( 12, -30, -20 )
-        scene.add( light6 )
-
+        function addDiLight (name, posiX, posiY, posiZ, castShadow) {
+            var light = new THREE.DirectionalLight( 0xffffff, 0.2 )
+            light.name = name
+            light.castShadow = castShadow
+            light.position.set( posiX, posiY, posiZ )
+            scene.add( light )
+        }
         // load model
         var loader = new FBXLoader()
         loader.load( './assets/models/coin_10.fbx', function ( object ) {
@@ -144,19 +142,47 @@ export default {
             object.scale.x = 2.2
             object.scale.y = 2.2
             object.scale.z = 2.2
+            object.rotateZ = 0.5
             object.visible = true
         })
 
         loader.load( './assets/models/coin_50.fbx', function ( object ) {
             object.traverse( function ( child ) {
                 if ( child.isMesh ) {
+                    
+                    
                     child.castShadow = true
                     child.receiveShadow = true
-                    child.material = new THREE.MeshStandardMaterial( {
-                        reflectivity: 1,
-                        metalness: 0.5,
-                        roughness: 0.5
-                    })
+                    
+                    // Defind material by parts
+                    if(child.name.indexOf('pasted__typeMesh') != -1){
+                        child.material = new THREE.MeshStandardMaterial( {
+                            color: "0xffffff",
+                            reflectivity: 0.8,
+                            metalness: 0.2,
+                            roughness: 0.8
+                        })
+                    } 
+
+                    else if(child.name.indexOf('pCube') != -1){
+                        child.material = new THREE.MeshStandardMaterial( {
+                            color: "0xffffff",
+                            reflectivity: 0.9,
+                            metalness: 0.2,
+                            roughness: 0.8
+                        })
+                    }
+                    
+                    
+                    else {
+                        child.material = new THREE.MeshStandardMaterial( {
+                            reflectivity: 1,
+                            metalness: 0.5,
+                            roughness: 0.5
+                        })
+                    }
+
+                    
                 }
             })
             scene.add( object )
